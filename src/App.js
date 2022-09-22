@@ -1,25 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import {  PureComponent } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Temp = (props) => {
+  return <div>{props.test}</div>
+}
+
+class App extends PureComponent {
+
+  state = {
+    val: 1
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState(() => {
+        return { val: 1 }
+      })
+    }, 2000)
+
+  }
+
+
+  // shouldComponentUpdate(nextProp, nextState) {
+  //   console.log(nextState.val, this.state.val)
+  //    return this.state.val != nextState.val
+  // }
+
+  render() {
+    return (
+      <div className="App">
+        {console.log(this.state.val)}
+        <Temp test={this.state.val} />
+      </div>
+    );
+  }
 }
 
 export default App;
